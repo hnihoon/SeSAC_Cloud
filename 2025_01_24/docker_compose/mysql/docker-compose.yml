@@ -1,0 +1,27 @@
+# mysql/docker-compose.yml
+version: "3.8"
+services:
+    db:
+        image: mysql:8.0
+        ports:
+            - "3307:3306"
+        env_file:
+            - .env
+        # environment:
+        #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        #     MYSQL_DATABASE: ${MYSQL_DATABASE}
+        networks:
+            - db-connect
+        volumes:
+            # Named Volume:[컨테이너 경로]
+            - db-volume:/var/lib/mysql
+
+# 컨테이너에 적용할 네트워크 드라이브를 관리하는 블록
+networks:
+    db-connect:
+
+volumes:
+    db-volume:
+
+
+
